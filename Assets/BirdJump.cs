@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class BirdJump : MonoBehaviour
 {
-    
+    Rigidbody2D rb;
+    public float jumpPower;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start Bird Jump");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update Bird Jump");
+        if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.Space)){
+            rb.velocity = Vector2.up * jumpPower;
+        }
     }
 }
