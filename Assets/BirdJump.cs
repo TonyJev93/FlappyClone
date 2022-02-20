@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; // Scene 다루기 위한 모듈
 
 public class BirdJump : MonoBehaviour
 {
@@ -20,5 +21,13 @@ public class BirdJump : MonoBehaviour
         if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.Space)){
             rb.velocity = Vector2.up * jumpPower;
         }
+    }
+
+    // 충돌이 발생할 때 동작
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(Score.score > Score.bestScore){
+            Score.bestScore = Score.score;
+        }
+        SceneManager.LoadScene("GameOverScene");
     }
 }
